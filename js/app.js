@@ -2,6 +2,8 @@
  * Create a list that holds all of your cards
  */
  //Spread HTML collection into array
+let deck = document.querySelector('.deck');
+
 let cards = [...document.getElementsByClassName('card')];
 
 /*
@@ -33,12 +35,22 @@ function StartGame() {
 //2.Add each card to HTML
 //Note that with appendChild, if an element already exists it will be moved rather than duplicated!
   for (const card of cards) {
-    document.querySelector('.deck').appendChild(card);
+    deck.appendChild(card);
   }
 }
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)*/
+function ShowCard(evt) {
+  evt.target.classList.toggle('show');
+  evt.target.classList.toggle('open');
+}
+
+//add Event Listener to flip cards
+deck.addEventListener('click', ShowCard);
+
+
+
 
 
 
