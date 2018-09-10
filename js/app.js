@@ -56,6 +56,9 @@ function startGame() {
 //3. Show all cards for a bit and hide them
 showAll();
 setTimeout(hideAll, 8000);
+
+//4. reset counter
+document.querySelector('.moves').textContent = counter;
 }
 /*
  * set up the event listener for a card. If a card is clicked:
@@ -112,5 +115,8 @@ deck.addEventListener('click', showCard);
  }
  /*
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
+ */
+ let counter = 0;
+ /*
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
