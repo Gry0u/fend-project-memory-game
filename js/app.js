@@ -1,5 +1,6 @@
 let counter = document.querySelector('.moves');
 let moves = 0;
+let start;
 
 /*
  * Create a list that holds all of your cards
@@ -62,6 +63,9 @@ setTimeout(hideAll, 1000);
 
 //4. reset counter
 counter.textContent = moves;
+
+//5. start timer
+start = window.performance.now();
 }
 /*
  * set up the event listener for a card. If a card is clicked:
@@ -82,10 +86,15 @@ deck.addEventListener('click', showCard);
  function openCard(evt) {
    openCards.push(evt.target);
    /*
-   *  - if the list already has another card, check to see if the two cards match*/
+   *  - if the list already has another card, check to see if the two cards match
+   + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
+   */
    if (openCards.length > 0) {
      if (openCards[0].firstElementChild.getAttribute('class') == openCards[1].firstElementChild.getAttribute('class')) {
-       match();
+       match()
+       if (checkAllMatches()) {
+         win();
+       }
      }
      else {
        noMatch();
@@ -118,9 +127,18 @@ deck.addEventListener('click', showCard);
      openCards = [];
    }, 1000);
  }
- /*
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- */
+
+ function win() {
+   window.alert(`Congratulations, you completed the memory game in ${(window.performance.now() - start).toPrecision(2)/1000} seconds after ${moves} moves!`);
+ }
+
+ function checkAllMatches() {
+   let finish = 1;
+   for (let child of deck.children) {
+     finish *= child.classList.contains('match');
+   }
+   return finish;
+ }
 
  /*
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
