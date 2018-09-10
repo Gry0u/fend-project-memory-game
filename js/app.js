@@ -1,6 +1,7 @@
 let counter = document.querySelector('.moves');
-let moves = 0;
-let start;
+let moves = 0; //number of moves
+let start; // start time
+let stars = document.getElementsByClassName('fa-star');
 
 /*
  * Create a list that holds all of your cards
@@ -100,9 +101,11 @@ deck.addEventListener('click', showCard);
        noMatch();
      }
      moves += 1;
+     updateRating(moves);
      counter.textContent = moves;
    }
  }
+
  deck.addEventListener('click', openCard);
 
  /*
@@ -138,6 +141,19 @@ deck.addEventListener('click', showCard);
      finish *= child.classList.contains('match');
    }
    return finish;
+ }
+
+ function updateRating(moves) {
+   if (moves <15) {
+
+   }
+   else if (moves < 25) {
+    stars[0].style.display = 'none';
+   }
+   else {
+     stars[0].style.display = 'none';
+     stars[1].style.display = 'none';
+   }
  }
 
  /*
