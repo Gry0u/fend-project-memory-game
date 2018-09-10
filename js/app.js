@@ -83,11 +83,13 @@ deck.addEventListener('click', showCard);
  *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
  */
  function noMatch() {
-   for (let c of ['show', 'open']) {
-     openCards[0].classList.toggle(c);
-     openCards[1].classList.toggle(c);
-   }
-   openCards = [];
+   setTimeout(function() {
+     for (let c of ['show', 'open']) {
+       openCards[0].classList.toggle(c);
+       openCards[1].classList.toggle(c);
+     }
+     openCards = [];
+   }, 1000);
  }
  /*
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
