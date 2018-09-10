@@ -28,7 +28,7 @@ function shuffle(array) {
     return array;
 }
 
-function StartGame() {
+function startGame() {
 //1.Shuffle cards
   cards = shuffle(cards)
 
@@ -41,25 +41,55 @@ function StartGame() {
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)*/
-function ShowCard(evt) {
+function showCard(evt) {
   evt.target.classList.toggle('show');
   evt.target.classList.toggle('open');
 }
 
 //add Event Listener to flip cards
-deck.addEventListener('click', ShowCard);
-
-
-
-
-
+deck.addEventListener('click', showCard);
 
 
  /*
  *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
+ */
+ let openCards = [];
+ function openCard(evt) {
+   openCards.push(evt.target);
+   /*
+   *  - if the list already has another card, check to see if the two cards match*/
+   if (openCards.length > 0) {
+     if (openCards[0].firstElementChild.getAttribute('class') == openCards[1].firstElementChild.getAttribute('class')) {
+       match();
+     }
+     else {
+       noMatch();
+     }
+   }
+ }
+ deck.addEventListener('click', openCard);
+
+ /*
  *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
+ */
+ function match() {
+   for (let c of ['show', 'open', 'match']) {
+     openCards[0].classList.toggle(c);
+     openCards[1].classList.toggle(c);
+   }
+   openCards = [];
+ }
+ /*
  *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
+ */
+ function noMatch() {
+   for (let c of ['show', 'open']) {
+     openCards[0].classList.toggle(c);
+     openCards[1].classList.toggle(c);
+   }
+   openCards = [];
+ }
+ /*
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
