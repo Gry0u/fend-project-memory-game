@@ -28,6 +28,21 @@ function shuffle(array) {
     return array;
 }
 
+function showAll() {
+for (let child of deck.children) {
+  child.classList.add('open');
+  child.classList.add('show');
+  child.classList.remove('match');
+  }
+}
+
+function hideAll() {
+  for (let child of deck.children) {
+    child.classList.remove('open');
+    child.classList.remove('show');
+    }
+  }
+
 function startGame() {
 //1.Shuffle cards
   cards = shuffle(cards)
@@ -37,6 +52,10 @@ function startGame() {
   for (const card of cards) {
     deck.appendChild(card);
   }
+
+//3. Show all cards for a bit and hide them
+showAll();
+setTimeout(hideAll, 8000);
 }
 /*
  * set up the event listener for a card. If a card is clicked:
