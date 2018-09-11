@@ -19,7 +19,6 @@ let cards = [...document.getElementsByClassName('card')]; //Spread deck HTML col
  *   - add each card's HTML to the page
  Shuffle function from http://stackoverflow.com/a/2450976
  */
-
 function shuffle(array) {
     let currentIndex = array.length, temporaryValue, randomIndex;
     while (currentIndex !== 0) {
@@ -61,7 +60,7 @@ function startGame() {
 
 //3. Show all cards for a bit and hide them
 showAll();
-setTimeout(hideAll, 1000);
+setTimeout(hideAll, 8000);
 
 //4. reset counter
 counter.textContent = moves;
@@ -118,43 +117,48 @@ function match() {
 
 //if the cards do not match, remove the cards from the list and hide the card's symbol
 function noMatch() {
- //allow some delay before hiding back
- setTimeout(function() {
-   for (let c of ['show', 'open']) {
-     openCards[0].classList.toggle(c);
-     openCards[1].classList.toggle(c);
-   }
-   openCards = [];
- }, 1000);
+  //allow some delay before hiding back
+  setTimeout(function() {
+    for (let c of ['show', 'open']) {
+      openCards[0].classList.toggle(c);
+      openCards[1].classList.toggle(c);
+    }
+    openCards = [];
+  }, 1000);
 }
 
 //Display winning message including ellapsed time and number of moves
 function win() {
- window.alert(`Congratulations, you completed the memory game in ${(window.performance.now() - start).toPrecision(2)/1000} seconds after ${moves} moves!`);
+  setTimeout(function() {
+    window.alert(`Congratulations, you completed the memory game in ${(window.performance.now() - start).toPrecision(2)/1000} seconds after ${moves} moves!`);
+  }, 500);
 }
 
 //Check if all cards have been matched
 function checkAllMatches() {
- let finish = 1;
- for (let child of deck.children) {
-   finish *= child.classList.contains('match');
- }
- return finish;
+  let finish = 1;
+  for (let child of deck.children) {
+    finish *= child.classList.contains('match');
+  }
+  return finish;
 }
 
 //Update number of stars based on number of moves
 function updateRating(moves) {
- if (moves <15) {
+  if (moves <15) {
 
  }
- else if (moves < 25) {
-  stars[0].style.display = 'none';
- }
- else {
-   stars[0].style.display = 'none';
-   stars[1].style.display = 'none';
- }
+  else if (moves < 25) {
+    stars[0].style.display = 'none';
+  }
+  else {
+    stars[0].style.display = 'none';
+    stars[1].style.display = 'none';
+  }
 }
 
 //Reset game on click on corresponding button
 document.querySelector('.restart').addEventListener('click', startGame);
+
+//Start game on page load
+window.onload = startGame;
