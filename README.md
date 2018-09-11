@@ -1,11 +1,6 @@
 # Memory Game Project
 This is a matching game where you have to find all the pairs.
 
-## Table of Contents
-
-* [Instructions](#instructions)
-* [Contributing](#contributing)
-
 ## Get started
 1. Clone repo or download manually files
 2. Load index.html in your browser
@@ -18,5 +13,5 @@ If your 2 selected cards match, they are left shown. Otherwise they are hidden a
 Once you have matched all the cards, your final score and the time you needed to complete the game are displayed.  
 You can restart the game anytime in clicking on the restart button.
 
-##Sources
-[Starting Code](https://github.com/udacity/fend-project-memory-game) providing with HTML and CSS to display a static version of the game.
+## Sources
+[Starting Code](https://github.com/udacity/fend-project-memory-game) including HTML and CSS to display a static version of the game.
