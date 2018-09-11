@@ -1,20 +1,22 @@
 # Memory Game Project
+This is a matching game where you have to find all the pairs.
 
 ## Table of Contents
 
 * [Instructions](#instructions)
 * [Contributing](#contributing)
 
-## Instructions
+## Get started
+1. Clone repo or download manually files
+2. Load index.html in your browser
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+## How to play
+The game starts (including timer) as soon as you load the page.  
+The cards are displayed for 8 seconds. Try to memorize them as best as you can.  
+Then you have to click on a first and a second card.  
+If your 2 selected cards match, they are left shown. Otherwise they are hidden again.  
+Once you have matched all the cards, your final score and the time you needed to complete the game are displayed.  
+You can restart the game anytime in clicking on the restart button.
 
-To get started, open `js/app.js` and start building out the app's functionality
-
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
-
-## Contributing
-
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+##Sources
+[Starting Code](https://github.com/udacity/fend-project-memory-game) providing with HTML and CSS to display a static version of the game.
