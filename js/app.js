@@ -1,27 +1,27 @@
+//Variables declarations
 let counter = document.querySelector('.moves');
 let moves = 0; //number of moves
 let start; // start time
-let stars = document.getElementsByClassName('fa-star');
-
+let stars = document.getElementsByClassName('fa-star'); //rating
+let openCards = [];
 /*
- * Create a list that holds all of your cards
+ * Create a list that holds all  cards
+ Spread HTML collection into array
  */
- //Spread HTML collection into array
-let deck = document.querySelector('.deck');
 
-let cards = [...document.getElementsByClassName('card')];
+let deck = document.querySelector('.deck'); //list holding all cards
+let cards = [...document.getElementsByClassName('card')]; //Spread deck HTML collection into array
 
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
+ Shuffle function from http://stackoverflow.com/a/2450976
  */
 
-// Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     let currentIndex = array.length, temporaryValue, randomIndex;
-
     while (currentIndex !== 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex -= 1;
@@ -29,10 +29,10 @@ function shuffle(array) {
         array[currentIndex] = array[randomIndex];
         array[randomIndex] = temporaryValue;
     }
-
     return array;
 }
 
+//Show all cards
 function showAll() {
 for (let child of deck.children) {
   child.classList.add('open');
@@ -41,6 +41,7 @@ for (let child of deck.children) {
   }
 }
 
+//Hide all cards
 function hideAll() {
   for (let child of deck.children) {
     child.classList.remove('open');
@@ -68,9 +69,8 @@ counter.textContent = moves;
 //5. start timer
 start = window.performance.now();
 }
-/*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)*/
+
+ //display the card's symbol
 function showCard(evt) {
   evt.target.classList.toggle('show');
   evt.target.classList.toggle('open');
@@ -79,38 +79,35 @@ function showCard(evt) {
 //add Event Listener to flip cards
 deck.addEventListener('click', showCard);
 
-
- /*
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- */
- let openCards = [];
- function openCard(evt) {
+//Function managing gameplay:
+ function play(evt) {
+   //add clicked card to a list of open cards
    openCards.push(evt.target);
-   /*
-   *  - if the list already has another card, check to see if the two cards match
-   + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
-   */
+   //if the list already has another card, check if cards match
    if (openCards.length > 0) {
      if (openCards[0].firstElementChild.getAttribute('class') == openCards[1].firstElementChild.getAttribute('class')) {
        match()
+       //if all cards have been matched, show winning message
        if (checkAllMatches()) {
          win();
        }
      }
+     //Otherwise hide back cards
      else {
        noMatch();
      }
+     //increment counter
      moves += 1;
+     //Update stars rating
      updateRating(moves);
      counter.textContent = moves;
    }
  }
 
- deck.addEventListener('click', openCard);
+//Add event listener for gameplay functionalities
+ deck.addEventListener('click', play);
 
- /*
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- */
+//if the cards do match, lock cards in  open position
  function match() {
    for (let c of ['show', 'open', 'match']) {
      openCards[0].classList.toggle(c);
@@ -118,10 +115,10 @@ deck.addEventListener('click', showCard);
    }
    openCards = [];
  }
- /*
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- */
+
+//if the cards do not match, remove the cards from the list and hide the card's symbol
  function noMatch() {
+   //allow some delay before hiding back
    setTimeout(function() {
      for (let c of ['show', 'open']) {
        openCards[0].classList.toggle(c);
@@ -131,10 +128,12 @@ deck.addEventListener('click', showCard);
    }, 1000);
  }
 
+//Display winning message including ellapsed time and number of moves
  function win() {
    window.alert(`Congratulations, you completed the memory game in ${(window.performance.now() - start).toPrecision(2)/1000} seconds after ${moves} moves!`);
  }
 
+//Check if all cards have been matched
  function checkAllMatches() {
    let finish = 1;
    for (let child of deck.children) {
@@ -143,6 +142,7 @@ deck.addEventListener('click', showCard);
    return finish;
  }
 
+//Update number of stars based on number of moves
  function updateRating(moves) {
    if (moves <15) {
 
@@ -155,7 +155,3 @@ deck.addEventListener('click', showCard);
      stars[1].style.display = 'none';
    }
  }
-
- /*
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
