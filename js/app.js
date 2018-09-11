@@ -155,3 +155,6 @@ deck.addEventListener('click', showCard);
      stars[1].style.display = 'none';
    }
  }
+
+//Reset game on click on corresponding button
+document.querySelector('.restart').addEventListener('click', startGame);
