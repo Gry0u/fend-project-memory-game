@@ -77,7 +77,7 @@ function play(evt) {
   //add clicked card to a list of open cards
   openCards.push(evt.target);
   //if the list already has another card, check if cards match
-  if (openCards.length > 0) {
+  if (openCards.length > 1) {
     if (openCards[0].firstElementChild.getAttribute('class') == openCards[1].firstElementChild.getAttribute('class')) {
       match()
       //if all cards have been matched, show winning message
