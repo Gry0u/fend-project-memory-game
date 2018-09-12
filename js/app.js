@@ -5,7 +5,8 @@ let start; // start time
 let stars = document.getElementsByClassName('fa-star'); //rating
 let openCards = [];
 let timer = new Timer();
-
+const modal = document.getElementById('myModal'); //get the Modal
+const span = document.getElementsByClassName("close")[0]; //get the span element that closes the modal
 /*
  * Create a list that holds all  cards
  Spread HTML collection into array
@@ -128,12 +129,13 @@ function noMatch() {
 
 //Display winning message including ellapsed time and number of moves
 function win() {
-  //Stop Timer
-  timer.stop();
+  //Pause Timer
+  timer.pause();
+  //update modal text Content
+  document.querySelector('.modal-content > p').textContent = `Congratulations, you completed the memory game in ${timer.getTimeValues().toString()} after ${moves} moves!`;
 
-  setTimeout(function() {
-    window.alert(`Congratulations, you completed the memory game in ${document.getElementById('basicUsage').innerHTML} after ${moves} moves!`);
-  }, 500);
+  //Display Modal
+  modal.style.display = "block";
 }
 
 //Check if all cards have been matched
@@ -164,3 +166,15 @@ document.querySelector('.restart').addEventListener('click', startGame);
 
 //Start game on page load
 window.onload = startGame;
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
