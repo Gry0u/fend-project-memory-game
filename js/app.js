@@ -46,6 +46,17 @@ function hideAll() {
 }
 
 function startGame() {
+  //0.0 reset moves counter
+  moves = 0;
+  counter.textContent = moves;
+  //0.1 reset stars rating
+  for (star of stars) {
+    star.style.display = 'inline-block';
+  }
+  //0.2 reset timer
+  timer.stop();
+  document.getElementById('basicUsage').innerHTML = timer.getTimeValues().toString();
+
 //1.Shuffle cards
   cards = shuffle(cards)
 
@@ -55,18 +66,19 @@ function startGame() {
     deck.appendChild(card);
   }
 
-//3. Show all cards for a bit and hide them
+//3. Show all cards for a bit
   showAll();
-  setTimeout(hideAll, 8000);
+  setTimeout(function(){
+    //4. Hide cards
+    hideAll();
+    //5. Start timer
+    timer.start();
+    //6. Update timer
+    timer.addEventListener('secondsUpdated', function (e) {
+      document.getElementById('basicUsage').innerHTML = timer.getTimeValues().toString();
+    });
+  }, 8000);
 
-//4. reset counter
-  counter.textContent = moves;
-
-//5. start timer
-  timer.start();
-  timer.addEventListener('secondsUpdated', function (e) {
-    document.getElementById('basicUsage').innerHTML = timer.getTimeValues().toString();
-  });
 }
 
  //display the card's symbol
