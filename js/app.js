@@ -4,6 +4,8 @@ let moves = 0; //number of moves
 let start; // start time
 let stars = document.getElementsByClassName('fa-star'); //rating
 let openCards = [];
+let timer = new Timer();
+
 /*
  * Create a list that holds all  cards
  Spread HTML collection into array
@@ -53,14 +55,17 @@ function startGame() {
   }
 
 //3. Show all cards for a bit and hide them
-showAll();
-setTimeout(hideAll, 8000);
+  showAll();
+  setTimeout(hideAll, 8000);
 
 //4. reset counter
-counter.textContent = moves;
+  counter.textContent = moves;
 
 //5. start timer
-start = window.performance.now();
+  timer.start();
+  timer.addEventListener('secondsUpdated', function (e) {
+    document.getElementById('basicUsage').innerHTML= timer.getTimeValues().toString();
+  });
 }
 
  //display the card's symbol
