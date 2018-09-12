@@ -12,13 +12,7 @@ let openCards = [];
 let deck = document.querySelector('.deck'); //list holding all cards
 let cards = [...document.getElementsByClassName('card')]; //Spread deck HTML collection into array
 
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- Shuffle function from http://stackoverflow.com/a/2450976
- */
+//shuffle the list of cards (see source in README)
 function shuffle(array) {
     let currentIndex = array.length, temporaryValue, randomIndex;
     while (currentIndex !== 0) {
