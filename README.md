@@ -14,7 +14,7 @@ Once you have matched all the cards, your final score and the time you needed to
 You can restart the game anytime in clicking on the restart button.
 
 ## Sources
-[Starting Code](https://github.com/udacity/fend-project-memory-game) including HTML and CSS to display a static version of the game.
+[Starting Code](https://github.com/udacity/fend-project-memory-game) including HTML and CSS to display a static version of the game.  
 [Shuffle function](http://stackoverflow.com/a/2450976)  
 [Timer](https://albert-gonzalez.github.io/easytimer.js/)  
 [Modal](https://www.w3schools.com/howto/howto_css_modals.asp)
