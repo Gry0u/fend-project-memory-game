@@ -1,0 +1,51 @@
+/*small*/
+@media screen and (max-width: 500px) {
+  .deck {
+  width: 310px;
+  min-height: 310px;
+}
+
+  .deck .card {
+    width: 55px;
+    height: 55px;
+  }
+
+  .score-panel {
+  width: 60%;
+  }
+}
+
+/*medium*/
+@media screen and (min-width: 501px) and (max-width: 750px) {
+  .deck {
+  width: 450px;
+  min-height: 450px;
+}
+
+  .deck .card {
+    width: 80px;
+    height: 80px;
+  }
+
+  .score-panel {
+  width: 60%;
+  }
+}
+
+/*large*/
+@media screen and (min-width: 751px) {
+  .deck {
+  width: 450px;
+  min-height: 450px;
+}
+
+  .deck .card {
+    width: 80px;
+    height: 80px;
+  }
+
+  .score-panel {
+  width: 50%;
+  font-size: 20px;
+  }
+}
