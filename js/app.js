@@ -64,7 +64,7 @@ function startGame() {
 //5. start timer
   timer.start();
   timer.addEventListener('secondsUpdated', function (e) {
-    document.getElementById('basicUsage').innerHTML= timer.getTimeValues().toString();
+    document.getElementById('basicUsage').innerHTML = timer.getTimeValues().toString();
   });
 }
 
@@ -128,8 +128,11 @@ function noMatch() {
 
 //Display winning message including ellapsed time and number of moves
 function win() {
+  //Stop Timer
+  timer.stop();
+
   setTimeout(function() {
-    window.alert(`Congratulations, you completed the memory game in ${(window.performance.now() - start).toPrecision(2)/1000} seconds after ${moves} moves!`);
+    window.alert(`Congratulations, you completed the memory game in ${document.getElementById('basicUsage').innerHTML} after ${moves} moves!`);
   }, 500);
 }
 
