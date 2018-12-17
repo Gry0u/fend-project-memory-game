@@ -2,6 +2,10 @@
 This is a matching game where you have to find all the pairs.
 
 ## Get started
+### Play the online version
+[Here](https://memory-game-gry0u.herokuapp.com/)
+
+### Play locally
 1. Clone repo or download manually files
 2. Load index.html in your browser
 
