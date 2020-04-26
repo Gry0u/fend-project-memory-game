@@ -21,6 +21,12 @@ body {
     font-family: 'Coda', cursive;
 }
 
+footer {
+  font-family: monospace;
+  font-size: 20px;
+  text-align: center;
+}
+
 .container {
     display: flex;
     justify-content: center;
